@@ -1,0 +1,34 @@
+def text_analysis(paragraph):
+    paragraph = paragraph.strip()
+
+    sentences = 0
+    for ch in paragraph:
+        if ch in ".!?":
+            sentences += 1
+
+    words = paragraph.replace('.', '').replace('!', '').replace('?', '').split()
+
+    freq = {}
+
+    for word in words:
+        word_lower = word.lower()
+        freq[word_lower] = freq.get(word_lower, 0) + 1
+
+    longest_word = max(words, key=len)
+
+    print("\n--- Text Analysis ---")
+    print(f"Number of sentences: {sentences}")
+    print(f"Number of words: {len(words)}")
+    print(f"Longest word: {longest_word}")
+
+    print("\nWord Frequencies:")
+    for word, count in freq.items():
+        print(f"{word}: {count}")
+
+
+def main():
+    paragraph = input("Enter a paragraph: ")
+    text_analysis(paragraph)
+
+
+main()
