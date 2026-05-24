@@ -1,1 +1,31 @@
+class ComplexNumber:
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
 
+    def add(self, other):
+        return ComplexNumber(
+            self.real + other.real,
+            self.imag + other.imag
+        )
+
+    def __str__(self):
+        sign = '+' if self.imag >= 0 else '-'
+        return f"{self.real} {sign} {abs(self.imag)}i"
+
+
+def main():
+    n = int(input("\nEnter how many complex numbers to add: "))
+
+    total = ComplexNumber(0, 0)
+
+    for i in range(n):
+        r = float(input(f"Enter real part of number {i+1}: "))
+        im = float(input(f"Enter imaginary part of number {i+1}: "))
+
+        total = total.add(ComplexNumber(r, im))
+
+    print(f"Sum of {n} complex numbers: {total}")
+
+
+main()
