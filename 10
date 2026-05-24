@@ -1,0 +1,44 @@
+def read_csv_to_dict(filename):
+    data = []
+
+    with open(filename, "r") as file:
+        lines = file.readlines()
+
+    headers = lines[0].strip().split(",")
+
+    for line in lines[1:]:
+        values = line.strip().split(",")
+        row_dict = dict(zip(headers, values))
+        data.append(row_dict)
+
+    return data, headers
+
+
+def summary_queries(data, column):
+    try:
+        values = [float(row[column]) for row in data]
+
+        print(f"Max of {column}: {max(values)}")
+        print(f"Min of {column}: {min(values)}")
+        print(f"Average of {column}: {sum(values) / len(values):.2f}")
+
+    except ValueError:
+        print("Selected column is not numeric.")
+
+    except KeyError:
+        print("Column not found.")
+
+
+def main():
+    filename = input("Enter CSV file name: ")
+
+    data, headers = read_csv_to_dict(filename)
+
+    print("Available columns:", headers)
+
+    column = input("Enter column name for summary: ")
+
+    summary_queries(data, column)
+
+
+main()
