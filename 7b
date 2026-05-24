@@ -5,8 +5,8 @@ class Time:
         self.seconds = seconds
 
     def total_seconds(self):
-        # Math formula: (hours * 3600) + (minutes * 60) + seconds
         return self.hours * 3600 + self.minutes * 60 + self.seconds
+
 
 def main():
     try:
@@ -14,12 +14,12 @@ def main():
         m = int(input("Enter minutes: "))
         s = int(input("Enter seconds: "))
 
-        # Instantiate the object and compute the result
         t = Time(h, m, s)
+
         print(f"Total seconds = {t.total_seconds()}")
 
     except ValueError:
         print("Invalid input. Please enter integers only.")
 
-if __name__ == "__main__":
-    main()
+
+main()
